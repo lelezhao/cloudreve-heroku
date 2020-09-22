@@ -1,34 +1,29 @@
 {
-	"name": "cloudreve",
-	"description": "Deploy cloudreve on Heroku.",
+    "name": "Cloudreve-Heroku",
+    "description": "Cloureve on Heroku with Redis",
 	"repository": "https://github.com/AishaFisher/cloudreve-heroku.git",
-	"keywords": ["cloudreve"],
+    "website": "https://heroku.com/",
+    "keywords": ["cloudreve", "netdisc", "share"],
 	"env": {
-		"DB_Type": {
-			"description": "Database Type",
-			"value": "mysql"
-		},
 		"DB_Host": {
 			"description": "Database Host",
-			"value": "127.0.0.1"
-		},
-		"DB_Port": {
-			"description": "Database Port",
-			"value": "3306"
+			"value": "revert"
 		},
 		"DB_User": {
 			"description": "Database User",
-			"value": "DB_User"
+			"value": "revert"
 		},
 		"DB_Password": {
 			"description": "Database Password",
-			"value": "DB_Password"
+			"value": "revert"
 		},
 		"DB_Name": {
 			"description": "Database Name",
-			"value": "cloudreve"
+			"value": "revert"
 		}
 	},
-	"website": "https://yam.ink",
-	"stack": "container"
+    "addons": [
+      "cleardb:ignite"
+    ],
+    "stack": "container"
 }

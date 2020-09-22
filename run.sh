@@ -16,11 +16,11 @@ SessionSecret = 723d505516e0c197e42a6be3c0af910e
 HashIDSalt = 723d505516e0c197e42a6be3c0af910e
 [Database]
 ; 数据库类型，目前支持 sqlite | mysql
-Type = $DB_Type
+Type = mysql
 ; 数据库地址
 Host = $DB_Host
 ; MySQL 端口
-Port = $DB_Port
+Port = 3306
 ; 用户名
 User = $DB_User
 ; 密码
