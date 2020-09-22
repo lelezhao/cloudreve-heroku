@@ -1,7 +1,7 @@
 {
 	"name": "cloudreve",
 	"description": "Deploy cloudreve on Heroku.",
-	"repository": "https://github.com/FuaerCN/cloudreve-heroku",
+	"repository": "https://github.com/AishaFisher/cloudreve-heroku.git",
 	"keywords": ["cloudreve"],
 	"env": {
 		"DB_Type": {
