@@ -3,7 +3,7 @@
 修改：添加Cleardb Mysql数据库
 ## 部署
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/AishaFisher/cloudreve-heroku.git)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/AishaFisher/cloudreve-heroku/tree/mysql-aria2)
 
 ## 概述
 
