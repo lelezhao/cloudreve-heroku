@@ -1,6 +1,7 @@
 # Cloudreve Heroku
 本项目来自:[FuaerCN/Cloudreve-Heroku](https://github.com/FuaerCN/cloudreve-heroku)
 修改：添加Cleardb Mysql数据库
+如需要使用外部MySQL，请使用分支[mysql-aria2](https://github.com/AishaFisher/cloudreve-heroku/tree/mysql-aria2)
 ## 部署
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/AishaFisher/cloudreve-heroku.git)
