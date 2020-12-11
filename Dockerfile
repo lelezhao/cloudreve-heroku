@@ -5,7 +5,7 @@ LABEL org.label-schema.vcs-url="https://github.com/jangrui/baota" \
 
 ARG TZ=Asia/Shanghai
 ARG DEBIAN_FRONTEND=noninteractive
-ENV SSH_PORT=${SSH_PORT:-3322}
+ENV SSH_PORT=${SSH_PORT:3322}
 
 RUN sed -i "s,//.*.ubuntu.com,//mirrors.aliyun.com,g" /etc/apt/sources.list \
     && apt-get update && apt-get install -y locales curl vim openssh-server tzdata \
@@ -35,6 +35,6 @@ RUN chmod +x /entrypoint.sh \
     && echo ${USERNAME} | /etc/init.d/bt 6 \
     && echo ${PASSWORD} | /etc/init.d/bt 5
 
-CMD /entrypoint.sh
+#CMD /entrypoint.sh
 EXPOSE ${BT_PORT} ${SSH_PORT}
 HEALTHCHECK --interval=5s --timeout=3s CMD curl -fs http://localhost:${BT_PORT} || exit 1 
