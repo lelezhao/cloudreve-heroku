@@ -9,8 +9,7 @@ ADD run.sh /root/cloudreve/run.sh
 RUN apt-get update \
     && apt-get install wget curl aria2 sudo -y
 
-RUN	#wget -qO cloudreve.tar.gz https://github.com/moeYuiYui/Cloudreve/releases/download/3.1.1/cloudreve_sp_3.1.1_linux_amd64.tar.gz \
-	wget -qO cloudreve.tar.gz https://github.com/cloudreve/Cloudreve/releases/download/3.2.0/cloudreve_3.2.0_linux_amd64.tar.gz \
+RUN wget -qO cloudreve.tar.gz https://github.com/cloudreve/Cloudreve/releases/download/3.2.0/cloudreve_3.2.0_linux_amd64.tar.gz \
     && wget -qO /root/aria2/dht.dat https://github.com/P3TERX/aria2.conf/raw/master/dht.dat \
     && wget -qO /root/aria2/dht6.dat https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
     
