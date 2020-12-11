@@ -5,7 +5,7 @@ LABEL org.label-schema.vcs-url="https://github.com/jangrui/baota" \
 
 ARG TZ=Asia/Shanghai
 ARG DEBIAN_FRONTEND=noninteractive
-ENV SSH_PORT=${SSH_PORT:3322}
+ENV SSH_PORT=${SSH_PORT:-3322}
 
 RUN sed -i "s,//.*.ubuntu.com,//mirrors.aliyun.com,g" /etc/apt/sources.list \
     && apt-get update && apt-get install -y locales curl vim openssh-server tzdata \
