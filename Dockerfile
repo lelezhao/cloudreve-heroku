@@ -1,23 +1,40 @@
-FROM debian:stable-slim
-ENV DEBIAN_FRONTEND noninteractive
+FROM ubuntu AS builder
 
-ADD mycloudreve.ini /root/cloudreve/mycloudreve.ini
-ADD aria2.conf /root/aria2/aria2.conf
-ADD trackers-list-aria2.sh /root/aria2/trackers-list-aria2.sh
-ADD run.sh /root/cloudreve/run.sh
+LABEL org.label-schema.vcs-url="https://github.com/jangrui/baota" \
+      org.label-schema.vendor="jangrui <admin@jangrui.com>"
 
-RUN apt-get update \
-    && apt-get install wget curl aria2 -y
+ARG TZ=Asia/Shanghai
+ARG DEBIAN_FRONTEND=noninteractive
+ENV SSH_PORT=${SSH_PORT:-3322}
 
-RUN wget -qO cloudreve.tar.gz https://github.com/cloudreve/Cloudreve/releases/download/3.1.1/cloudreve_3.1.1_linux_amd64.tar.gz \
-    && wget -qO /root/aria2/dht.dat https://github.com/P3TERX/aria2.conf/raw/master/dht.dat \
-    && wget -qO /root/aria2/dht6.dat https://github.com/P3TERX/aria2.conf/raw/master/dht6.dat
-    
-RUN tar -zxvf cloudreve.tar.gz -C /root/cloudreve
-RUN touch /root/aria2/aria2.session /root/aria2/aria2.log
-RUN chmod +x /root/cloudreve/cloudreve \
-    && chmod +x /root/aria2/trackers-list-aria2.sh \
-    && chmod +x /root/cloudreve/run.sh
-RUN mkdir -p /root/Download
+RUN sed -i "s,//.*.ubuntu.com,//mirrors.aliyun.com,g" /etc/apt/sources.list \
+    && apt-get update && apt-get install -y locales curl vim openssh-server tzdata \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && echo "Port ${SSH_PORT}" >> /etc/ssh/sshd_config
 
-CMD /root/cloudreve/run.sh
+ENV LANG en_US.utf8
+
+
+FROM builder AS baota
+
+RUN curl -sSo install.sh http://download.bt.cn/install/new_install.sh \
+    && echo y | bash install.sh \
+    && rm -rf install.sh /var/lib/apt/list/*
+
+ARG BT_PORT=8888
+ARG USERNAME=username
+ARG PASSWORD=password
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+    && /etc/init.d/bt 11 \
+    && echo ${BT_PORT} | /etc/init.d/bt 8 \
+    && echo ${USERNAME} | /etc/init.d/bt 6 \
+    && echo ${PASSWORD} | /etc/init.d/bt 5
+
+CMD /entrypoint.sh
+EXPOSE ${BT_PORT} ${SSH_PORT}
+HEALTHCHECK --interval=5s --timeout=3s CMD curl -fs http://localhost:${BT_PORT} || exit 1 
