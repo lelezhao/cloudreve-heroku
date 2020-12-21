@@ -1,7 +1,7 @@
 # Cloudreve Heroku
 本项目来自:[FuaerCN/Cloudreve-Heroku](https://github.com/FuaerCN/cloudreve-heroku)
 
-这个分支需要自己准备mysql数据库，kerku的免费5m不够使用。
+这个分支需要自己准备mysql数据库，keroku的免费5m不够使用。
 
 数据库尽可能离得比较近
 
