@@ -1,7 +1,10 @@
 # Cloudreve Heroku
 本项目来自:[FuaerCN/Cloudreve-Heroku](https://github.com/FuaerCN/cloudreve-heroku)
-修改：添加Cleardb Mysql数据库
-如需要使用外部MySQL，请使用分支[mysql-aria2](https://github.com/AishaFisher/cloudreve-heroku/tree/mysql-aria2)
+
+这个分支需要自己准备mysql数据库，kerku的免费5m不够使用。
+
+数据库尽可能离得比较近
+
 
 ## 部署
 
