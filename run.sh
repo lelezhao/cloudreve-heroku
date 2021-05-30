@@ -18,15 +18,15 @@ HashIDSalt = 723d505516e0c197e42a6be3c0af910e
 ; 数据库类型，目前支持 sqlite | mysql
 Type = mysql
 ; 数据库地址
-Host = $DB_Host
+Host = frps.zhaolele.top
 ; MySQL 端口
-Port = 3306
+Port = 50036
 ; 用户名
-User = $DB_User
+User = cloudone
 ; 密码
-Password = $DB_Password
+Password = mysql211
 ; 数据库名称
-Name = $DB_Name
+Name = Cloudreve
 ; 数据表前缀
 TablePrefix = V3
 EOF
